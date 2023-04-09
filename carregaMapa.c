@@ -32,12 +32,22 @@ void imprime_matriz(char** matriz, int tam)
         printf ("%s\n", matriz[i]);
 }
 
+char** destroi_matriz(char** matriz, int tam)
+{
+    for (int i = 0; i < tam; i++){
+        free(matriz[i]);
+    }
+
+    return NULL;
+}
+
 int main(){
     FILE* mapa = fopen("map.txt", "r");
     int tam;
 
     char** matriz = cria_matriz(mapa, &tam);
     imprime_matriz(matriz, tam);
+    matriz = destroi_matriz(matriz, tam);
 
     return 0;
 }

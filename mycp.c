@@ -15,11 +15,11 @@ int prepara_arquivos(FILE** arq1, FILE** arq2, int argc, char** argv)
         return 1;
     }
 
-    /* *arq2 = fopen(argv[2], "r"); */
-    /* if(*arq2){ */
-    /*     printf ("Arquivo %s ja existe.\n", argv[2]); */
-    /*     return 1; */
-    /* } */
+    *arq2 = fopen(argv[2], "r");
+    if(*arq2){
+        printf ("Arquivo %s ja existe.\n", argv[2]);
+        return 1;
+    }
     *arq2 = fopen(argv[2], "w");
 
     return 0;
