@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#define TAM 128
 
 /*Conta todos os caracteres de um arquivo.*/
 void conta_caracteres(FILE* arq)
@@ -25,9 +27,37 @@ void imprime_media(FILE* arq)
     printf ("%f\n", valor_final/tam);
 }
 
+/*Transforma letras minusculas de uma string em maiusculas.*/
+void aumenta_caixa_str(char* str)
+{
+    int i = 0;
+    while(str[i] != '\0'){
+        if(str[i] >= 'a' && str[i] <= 'z')
+            str[i] = str[i] - 32;
+        
+        i++;
+    }
+}
+
+/* Transforma todas as letras minusculas de um arquivo para maiusculas. */
+void aumenta_caixa_arq(FILE* arq)
+{
+    FILE* maiusc = fopen("maiusc.txt", "w");
+    char* linha = malloc(sizeof(char)*TAM);
+
+    fgets(linha, TAM, arq);
+    while(!feof(arq)){
+        aumenta_caixa_str(linha);
+        fputs(linha, maiusc);
+        fgets(linha, TAM, arq);
+    }
+
+    free(linha);
+}
+
 int main(){
-    FILE* texto = fopen("teste.txt", "r+");
-    imprime_media(texto);
+    FILE* texto = fopen("minusc.txt", "r+");
+    aumenta_caixa_arq(texto);
     fclose(texto);
 
     return 0;
