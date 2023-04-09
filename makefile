@@ -4,5 +4,8 @@ manipula: manipula.c
 run: manipula 
 	./manipula
 
+clean:
+	rm manipula
+
 vrun: manipula
 	valgrind --leak-check=full ./manipula
