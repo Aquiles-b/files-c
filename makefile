@@ -1,9 +1,11 @@
 CFLAGS= -g -Wall -std=c99
 
-all: manipula carregaMapa mycp mygrep
+FILES= manipula carregaMapa mycp mygrep le_poema
+
+all: $(FILES)
 
 %.c: %.c
 	gcc $@ -o $@ $(CFLAGS)
 
 clean:
-	rm -f manipula carregaMapa mycp mygrep
+	rm -f $(FILES)
