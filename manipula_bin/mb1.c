@@ -10,7 +10,7 @@ long longAleat()
 
 void escreveNumsAleat(FILE *arq)
 {
-    int n = rand() + 101;
+    int n = rand() % 100 + 101;
     long *v = malloc(sizeof(long)*n);
     for (int i = 0; i < n; i++) {
         v[i] = longAleat();
