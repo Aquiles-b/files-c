@@ -1,14 +1,9 @@
-manipula: manipula.c
-	gcc manipula.c -o manipula -g -Wall -std=c99
+CFLAGS= -g -Wall -std=c99
 
-mycp: mycp.c
-	gcc mycp.c -o cp -g -Wall -std=c99
+all: manipula carregaMapa mycp mygrep
 
-mygrep: mygrep.c
-	gcc mygrep.c -o mygrep -g -Wall -std=c99
-
-carregaMapa: carregaMapa.c
-	gcc carregaMapa.c -o carregaMapa -g -Wall -std=c99
+%.c: %.c
+	gcc $@ -o $@ $(CFLAGS)
 
 clean:
 	rm -f manipula carregaMapa mycp mygrep

@@ -56,7 +56,7 @@ void aumenta_caixa_arq(FILE* arq)
 }
 
 int main(){
-    FILE* texto = fopen("minusc.txt", "r+");
+    FILE* texto = fopen("arquivos/minusc.txt", "r+");
     aumenta_caixa_arq(texto);
     fclose(texto);
 

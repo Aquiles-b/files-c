@@ -42,7 +42,7 @@ char** destroi_matriz(char** matriz, int tam)
 }
 
 int main(){
-    FILE* mapa = fopen("map.txt", "r");
+    FILE* mapa = fopen("arquivos/map.txt", "r");
     int tam;
 
     char** matriz = cria_matriz(mapa, &tam);
