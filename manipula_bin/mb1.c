@@ -5,18 +5,20 @@
 /* Retorna um numero aleatorio.*/
 long longAleat()
 {
-    return (rand() * rand());
+    return ((rand() << 4) + rand());
 }
 
-void escreveNumsAleat(FILE *arq)
+int escreveNumsAleat(FILE *arq)
 {
     int n = rand() % 100 + 101;
-    long *v = malloc(sizeof(long)*n);
+    long *v = malloc(sizeof(long) * n);
     for (int i = 0; i < n; i++)
         v[i] = longAleat();
-    fwrite(v, sizeof(long), n, arq);
+    int escrito = fwrite(v, sizeof(long), n, arq);
 
     free(v);
+
+    return escrito;
 }
 
 int main()
@@ -29,7 +31,8 @@ int main()
         return 0;
     }
 
-    escreveNumsAleat(arq);
+    int n = escreveNumsAleat(arq);
+    printf ("%d\n", n);
     fclose(arq);
 
     return 0;

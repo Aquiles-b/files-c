@@ -5,7 +5,7 @@
 int numElementosArq(FILE *arq)
 {
     fseek(arq, 0, SEEK_END);
-    long ultimo = ftell(arq);
+    int ultimo = ftell(arq);
     int elems = ultimo / sizeof(long);
     rewind(arq);
 
@@ -24,7 +24,7 @@ long *leDados(FILE *arq, int elems)
 /* Troca os valores de dois enderecos.*/
 void troca(long *a, long *b)
 {
-    int aux = *a;
+    long aux = *a;
 
     *a = *b;
     *b = aux;
@@ -36,7 +36,7 @@ int particiona(long vetor[], int a, int b, int x)
     for (int i = a; i <= b; i++)
         if (vetor[i] <= x) {
             meio++;
-            troca(vetor + meio, vetor + i);
+            troca(&vetor[meio], &vetor[i]);
         }
 
     return meio;
@@ -58,7 +58,7 @@ void quickSort(long vetor[], int tam)
 
 int main()
 {
-    FILE *arq = fopen("longsAleatorios", "r+");
+    FILE *arq = fopen("longsAleatorios", "r");
     if (!arq) {
         perror("Erro ao ler o arquivo.");
         return 0;
@@ -67,7 +67,9 @@ int main()
     int elems = numElementosArq(arq);
     long *dados = leDados(arq, elems);
     quickSort(dados, elems);
-    fwrite(dados, sizeof(long), elems, arq);
+    freopen("longsAleatorios", "w", arq);
+    int n = fwrite(dados, sizeof(long), elems, arq);
+    printf ("%d\n", n);
 
     fclose(arq);
     free(dados);

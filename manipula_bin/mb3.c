@@ -12,27 +12,28 @@ int numElementosArq(FILE *arq)
     return elems;
 }
 
- /* Imprime as 10 primeiras e ultimas linhas. */
+/* Imprime as 10 primeiras e ultimas linhas. */
 void imprimeHeadTail(FILE *arq)
 {
-    long *dados = malloc(sizeof(long)*10);
-    fread(dados, sizeof(long), 10, arq);
-    for (int i = 0; i < 10; i++)
+    int tam = numElementosArq(arq);
+    long *dados = malloc(sizeof(long)*tam);
+    fread(dados, sizeof(long), tam, arq);
+    for (int i = 0; i < tam; i++)
         printf ("%ld ", dados[i]);
 
-    fseek(arq, -10, SEEK_END);
+    /* fseek(arq, -10 * sizeof(long), SEEK_END); */
 
-    fread(dados, sizeof(long), 10, arq);
-    for (int i = 0; i < 10; i++)
-        printf ("%ld ", dados[i]);
-    printf ("\n");
+    /* fread(dados, sizeof(long), 10, arq); */
+    /* for (int i = 0; i < 10; i++) */
+    /*     printf ("%ld ", dados[i]); */
+    /* printf ("\n"); */
 
     free(dados);
 }
 
 int main()
 {
-    FILE *arq = fopen("longsAleatorios", "w");
+    FILE *arq = fopen("longsAleatorios", "r");
     if (!arq) {
         perror("Erro ao criar arquivo.");
         return 0;
