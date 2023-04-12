@@ -1,9 +1,11 @@
 CFLAGS= -g -Wall -std=c99
 
-all: mb1 mb2 mb3
+PROGS= mb1 mb2 mb3
+
+all: $(PROGS)
 
 %.c: %.c
 	gcc $@.c -o $@ $(CFLAGS)
 
 clean: 
-	rm -f mb? longsAleatorios
+	rm -f mb? $(PROGS)
