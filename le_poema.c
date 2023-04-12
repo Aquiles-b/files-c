@@ -32,7 +32,7 @@ char *lePoema(FILE *poema)
 
 int main()
 {
-    FILE *poema = fopen("poema/poema.bin", "r");
+    FILE *poema = fopen("arquivos/poema.bin", "r");
     if (!poema){
         perror("Nao foi possivel ler o arquivo.");
         return 1;
