@@ -1,6 +1,6 @@
 CFLAGS= -g -Wall -std=c99
 
-all: mb1 mb2
+all: mb1 mb2 mb3
 
 %.c: %.c
 	gcc $@.c -o $@ $(CFLAGS)
